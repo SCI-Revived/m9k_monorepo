@@ -31,9 +31,9 @@ SWEP.Primary.Sound          = "amd65.single"
 SWEP.Primary.RPM            = 750 -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize       = 20
 SWEP.Primary.DefaultClip    = 60
-SWEP.Primary.KickUp         = .5 -- Maximum up recoil (rise)
+SWEP.Primary.KickUp         = .55 -- Maximum up recoil (rise)
 SWEP.Primary.KickDown       = 0.2 -- Maximum down recoil (skeet)
-SWEP.Primary.KickHorizontal = 0.4 -- Maximum up recoil (stock)
+SWEP.Primary.KickHorizontal = 0.45 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = true -- Automatic = true; Semi Auto = false
 SWEP.Primary.Ammo           = "ar2"
 

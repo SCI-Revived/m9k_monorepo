@@ -33,7 +33,7 @@ SWEP.Primary.Sound            = "Dmgfok_vally.Single"
 SWEP.Primary.RPM            = 900            -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize            = 20
 SWEP.Primary.DefaultClip        = 60
-SWEP.Primary.KickUp                = 0.3        -- Maximum up recoil (rise)
+SWEP.Primary.KickUp                = 0.5        -- Maximum up recoil (rise)
 SWEP.Primary.KickDown            = 0.3        -- Maximum down recoil (skeet)
 SWEP.Primary.KickHorizontal        = 0.5        -- Maximum up recoil (stock)
 SWEP.Primary.Automatic            = true        -- Automatic = true; Semi Auto = false

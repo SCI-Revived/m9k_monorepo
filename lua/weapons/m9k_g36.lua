@@ -35,7 +35,7 @@ SWEP.Primary.SilencedSound  = "hk416weapon.SilencedSingle" -- Sound if the weapo
 SWEP.Primary.RPM            = 750 -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize       = 30
 SWEP.Primary.DefaultClip    = 60
-SWEP.Primary.KickUp         = 0.35 -- Maximum up recoil (rise)
+SWEP.Primary.KickUp         = 0.5 -- Maximum up recoil (rise)
 SWEP.Primary.KickDown       = 0.35 -- Maximum down recoil (skeet)
 SWEP.Primary.KickHorizontal = 0.35 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = true -- Automatic = true; Semi Auto = false
