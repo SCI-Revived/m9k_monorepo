@@ -34,7 +34,7 @@ SWEP.Primary.Sound            = "Dmgfok_M16A4.Single"
 SWEP.Primary.RPM                = 850        -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize            = 30
 SWEP.Primary.DefaultClip            = 60
-SWEP.Primary.KickUp            = .4                -- Maximum up recoil (rise)
+SWEP.Primary.KickUp            = .42                -- Maximum up recoil (rise)
 SWEP.Primary.KickDown            = .4            -- Maximum down recoil (skeet)
 SWEP.Primary.KickHorizontal            = .6        -- Maximum up recoil (stock)
 SWEP.Primary.Automatic            = true        -- Automatic/Semi Auto
@@ -56,7 +56,7 @@ SWEP.ScopeScale             = 0.5
 SWEP.ReticleScale                 = 0.6
 
 SWEP.Primary.NumShots    = 1        --how many bullets to shoot per trigger pull
-SWEP.Primary.Damage        = 30    --base damage per bullet
+SWEP.Primary.Damage        = 28    --base damage per bullet
 SWEP.Primary.SpreadHip        = .015    --define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights = .01 -- ironsight accuracy, should be the same for shotguns
 
