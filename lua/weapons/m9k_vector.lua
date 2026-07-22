@@ -30,7 +30,7 @@ SWEP.AdminSpawnable            = true
 SWEP.FiresUnderwater = false
 
 SWEP.Primary.Sound            = "kriss_vector.Single"
-SWEP.Primary.RPM            = 1000            -- This is in Rounds Per Minute
+SWEP.Primary.RPM            = 1200            -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize            = 30
 SWEP.Primary.DefaultClip        = 60
 SWEP.Primary.KickUp                = 0.2        -- Maximum up recoil (rise)
