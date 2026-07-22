@@ -33,7 +33,7 @@ SWEP.Primary.ClipSize       = 20
 SWEP.Primary.DefaultClip    = 60
 SWEP.Primary.KickUp         = .7 -- Maximum up recoil (rise)
 SWEP.Primary.KickDown       = 0.2 -- Maximum down recoil (skeet)
-SWEP.Primary.KickHorizontal = 0.4 -- Maximum up recoil (stock)
+SWEP.Primary.KickHorizontal = 0.6 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = true -- Automatic = true; Semi Auto = false
 SWEP.Primary.Ammo           = "ar2"
 
@@ -43,7 +43,7 @@ SWEP.data                   = {} --The starting firemode
 SWEP.data.ironsights        = 1
 
 SWEP.Primary.NumShots       = 1 -- How many bullets to shoot per trigger pull
-SWEP.Primary.Damage         = 31 -- Base damage per bullet
+SWEP.Primary.Damage         = 23 -- Base damage per bullet
 SWEP.Primary.SpreadHip         = .021 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights   = .011 -- Ironsight accuracy, should be the same for shotguns
 
