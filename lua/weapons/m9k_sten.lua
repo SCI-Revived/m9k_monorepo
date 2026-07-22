@@ -33,7 +33,7 @@ SWEP.Primary.Sound          = "Weaponsten.Single"
 SWEP.Primary.RPM            = 500 -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize       = 32
 SWEP.Primary.DefaultClip    = 60
-SWEP.Primary.KickUp         = 0.6 -- Maximum up recoil (rise)
+SWEP.Primary.KickUp         = 0.55 -- Maximum up recoil (rise)
 SWEP.Primary.KickDown       = 0.4 -- Maximum down recoil (skeet)
 SWEP.Primary.KickHorizontal = 0.5 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = true -- Automatic = true; Semi Auto = false
@@ -46,7 +46,7 @@ SWEP.data                   = {} --The starting firemode
 SWEP.data.ironsights        = 1
 
 SWEP.Primary.NumShots       = 1 -- How many bullets to shoot per trigger pull
-SWEP.Primary.Damage         = 20 -- Base damage per bullet
+SWEP.Primary.Damage         = 22 -- Base damage per bullet
 SWEP.Primary.SpreadHip         = .03 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights   = .016 -- Ironsight accuracy, should be the same for shotguns
 

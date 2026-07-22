@@ -34,7 +34,7 @@ SWEP.Primary.SilencedSound  = "KAC_PDW.SilentSingle"
 SWEP.Primary.RPM            = 600 -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize       = 30
 SWEP.Primary.DefaultClip    = 60
-SWEP.Primary.KickUp         = 0.1 -- Maximum up recoil (rise)
+SWEP.Primary.KickUp         = 0.3 -- Maximum up recoil (rise)
 SWEP.Primary.KickDown       = 0.1 -- Maximum down recoil (skeet)
 SWEP.Primary.KickHorizontal = 0.2 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = true -- Automatic = true; Semi Auto = false
@@ -51,8 +51,8 @@ SWEP.data.ironsights        = 1
 SWEP.CanBeSilenced          = true
 
 SWEP.Primary.NumShots       = 1 -- How many bullets to shoot per trigger pull
-SWEP.Primary.Damage         = 15 -- Base damage per bullet
-SWEP.Primary.SpreadHip         = .025 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
+SWEP.Primary.Damage         = 18 -- Base damage per bullet
+SWEP.Primary.SpreadHip         = .05 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights   = .015 -- Ironsight accuracy, should be the same for shotguns
 
 SWEP.SightsPos              = Vector( 3.342, 0, 0.514 )

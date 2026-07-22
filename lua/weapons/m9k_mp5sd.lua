@@ -33,7 +33,7 @@ SWEP.Primary.Sound            = "Weapon_hkmp5sd.single"
 SWEP.Primary.RPM            = 700            -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize            = 30
 SWEP.Primary.DefaultClip        = 60
-SWEP.Primary.KickUp                = 0.4        -- Maximum up recoil (rise)
+SWEP.Primary.KickUp                = 0.55        -- Maximum up recoil (rise)
 SWEP.Primary.KickDown            = 0.35        -- Maximum down recoil (skeet)
 SWEP.Primary.KickHorizontal        = 0.25        -- Maximum up recoil (stock)
 SWEP.Primary.Automatic            = true        -- Automatic = true; Semi Auto = false
@@ -49,7 +49,7 @@ SWEP.data.ironsights            = 1
 
 SWEP.Primary.NumShots    = 1        -- How many bullets to shoot per trigger pull
 SWEP.Primary.Damage        = 23    -- Base damage per bullet
-SWEP.Primary.SpreadHip        = .03    -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
+SWEP.Primary.SpreadHip        = .05    -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights = .02 -- Ironsight accuracy, should be the same for shotguns
 
 SWEP.SightsPos = Vector(-2.284, -1.446, 0.884)
