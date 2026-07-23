@@ -33,9 +33,9 @@ SWEP.Primary.Sound            = "Dmgfok_vally.Single"
 SWEP.Primary.RPM            = 900            -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize            = 20
 SWEP.Primary.DefaultClip        = 60
-SWEP.Primary.KickUp                = 0.5        -- Maximum up recoil (rise)
+SWEP.Primary.KickUp                = 0.6        -- Maximum up recoil (rise)
 SWEP.Primary.KickDown            = 0.3        -- Maximum down recoil (skeet)
-SWEP.Primary.KickHorizontal        = 0.5        -- Maximum up recoil (stock)
+SWEP.Primary.KickHorizontal        = 0.55        -- Maximum up recoil (stock)
 SWEP.Primary.Automatic            = true        -- Automatic = true; Semi Auto = false
 SWEP.Primary.Ammo            = "ar2"            -- pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, AirboatGun
 -- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal piercing shotgun pellets
@@ -46,9 +46,9 @@ SWEP.data                 = {}                --The starting firemode
 SWEP.data.ironsights            = 1
 
 SWEP.Primary.NumShots    = 1        -- How many bullets to shoot per trigger pull
-SWEP.Primary.Damage        = 27    -- Base damage per bullet
-SWEP.Primary.SpreadHip        = .019    -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
-SWEP.Primary.SpreadIronSights = .008 -- Ironsight accuracy, should be the same for shotguns
+SWEP.Primary.Damage        = 30    -- Base damage per bullet
+SWEP.Primary.SpreadHip        = .04    -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
+SWEP.Primary.SpreadIronSights = .01 -- Ironsight accuracy, should be the same for shotguns
 
 SWEP.SightsPos = Vector (-2.22, -2, 1.01)
 SWEP.SightsAng = Vector (1.0513, 0.0322, 0)

@@ -31,9 +31,9 @@ SWEP.Primary.Sound          = "amd65.single"
 SWEP.Primary.RPM            = 750 -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize       = 20
 SWEP.Primary.DefaultClip    = 60
-SWEP.Primary.KickUp         = .55 -- Maximum up recoil (rise)
-SWEP.Primary.KickDown       = 0.2 -- Maximum down recoil (skeet)
-SWEP.Primary.KickHorizontal = 0.45 -- Maximum up recoil (stock)
+SWEP.Primary.KickUp         = .7 -- Maximum up recoil (rise)
+SWEP.Primary.KickDown       = 0.3 -- Maximum down recoil (skeet)
+SWEP.Primary.KickHorizontal = 0.48 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = true -- Automatic = true; Semi Auto = false
 SWEP.Primary.Ammo           = "ar2"
 
@@ -43,9 +43,9 @@ SWEP.data                   = {} --The starting firemode
 SWEP.data.ironsights        = 1
 
 SWEP.Primary.NumShots       = 1 -- How many bullets to shoot per trigger pull
-SWEP.Primary.Damage         = 23 -- Base damage per bullet
-SWEP.Primary.SpreadHip         = .021 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
-SWEP.Primary.SpreadIronSights   = .011 -- Ironsight accuracy, should be the same for shotguns
+SWEP.Primary.Damage         = 28 -- Base damage per bullet
+SWEP.Primary.SpreadHip         = .05 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
+SWEP.Primary.SpreadIronSights   = .015 -- Ironsight accuracy, should be the same for shotguns
 
 
 SWEP.SelectiveFire = true

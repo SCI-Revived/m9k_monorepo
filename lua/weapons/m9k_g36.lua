@@ -35,9 +35,9 @@ SWEP.Primary.SilencedSound  = "hk416weapon.SilencedSingle" -- Sound if the weapo
 SWEP.Primary.RPM            = 750 -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize       = 30
 SWEP.Primary.DefaultClip    = 60
-SWEP.Primary.KickUp         = 0.5 -- Maximum up recoil (rise)
-SWEP.Primary.KickDown       = 0.35 -- Maximum down recoil (skeet)
-SWEP.Primary.KickHorizontal = 0.35 -- Maximum up recoil (stock)
+SWEP.Primary.KickUp         = 0.52 -- Maximum up recoil (rise)
+SWEP.Primary.KickDown       = 0.4 -- Maximum down recoil (skeet)
+SWEP.Primary.KickHorizontal = 0.4 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = true -- Automatic = true; Semi Auto = false
 SWEP.Primary.Ammo           = "ar2" -- pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, AirboatGun
 -- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal piercing shotgun pellets
@@ -52,7 +52,7 @@ SWEP.data.ironsights        = 1
 SWEP.CanBeSilenced          = true
 
 SWEP.Primary.NumShots       = 1 -- How many bullets to shoot per trigger pull
-SWEP.Primary.Damage         = 24 -- Base damage per bullet
+SWEP.Primary.Damage         = 26 -- Base damage per bullet
 SWEP.Primary.SpreadHip         = .02 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights   = .01 -- Ironsight accuracy, should be the same for shotguns
 

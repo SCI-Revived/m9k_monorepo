@@ -35,8 +35,8 @@ SWEP.Primary.Sound            = "Tactic_AK47.Single"
 SWEP.Primary.RPM            = 600            -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize            = 30
 SWEP.Primary.DefaultClip        = 60
-SWEP.Primary.KickUp                = 0.45        -- Maximum up recoil (rise)
-SWEP.Primary.KickDown            = 0.35        -- Maximum down recoil (skeet)
+SWEP.Primary.KickUp                = 0.55        -- Maximum up recoil (rise)
+SWEP.Primary.KickDown            = 0.45        -- Maximum down recoil (skeet)
 SWEP.Primary.KickHorizontal        = 0.35        -- Maximum up recoil (stock)
 SWEP.Primary.Automatic            = true        -- Automatic = true; Semi Auto = false
 SWEP.Primary.Ammo            = "ar2"            -- pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, AirboatGun
@@ -48,9 +48,9 @@ SWEP.data                 = {}                --The starting firemode
 SWEP.data.ironsights            = 1
 
 SWEP.Primary.NumShots    = 1        -- How many bullets to shoot per trigger pull
-SWEP.Primary.Damage        = 25    -- Base damage per bullet
-SWEP.Primary.SpreadHip        = .02    -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
-SWEP.Primary.SpreadIronSights = .01 -- Ironsight accuracy, should be the same for shotguns
+SWEP.Primary.Damage        = 27    -- Base damage per bullet
+SWEP.Primary.SpreadHip        = .035    -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
+SWEP.Primary.SpreadIronSights = .015 -- Ironsight accuracy, should be the same for shotguns
 
 SWEP.SightsPos = Vector (2.0378, 1, 0.8809)
 SWEP.SightsAng = Vector (0, 0, 0)
