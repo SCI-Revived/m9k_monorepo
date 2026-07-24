@@ -31,12 +31,12 @@ SWEP.Spawnable                = true
 SWEP.AdminSpawnable           = true
 
 SWEP.Primary.Sound            = "Weapon_HoneyB.single"
-SWEP.Primary.RPM              = 791 -- This is in Rounds Per Minute
+SWEP.Primary.RPM              = 790 -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize         = 30
 SWEP.Primary.DefaultClip      = 60
-SWEP.Primary.KickUp           = .55 -- Maximum up recoil (rise)
+SWEP.Primary.KickUp           = .4 -- Maximum up recoil (rise)
 SWEP.Primary.KickDown         = .3 -- Maximum down recoil (skeet)
-SWEP.Primary.KickHorizontal   = .5 -- Maximum up recoil (stock)
+SWEP.Primary.KickHorizontal   = .35 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic        = true -- Automatic/Semi Auto
 SWEP.Primary.Ammo             = "ar2" -- pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, AirboatGun
 -- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal piercing shotgun pellets
@@ -57,7 +57,7 @@ SWEP.data.ironsights          = 1
 SWEP.ScopeScale               = 0.7
 
 SWEP.Primary.NumShots         = 1 --how many bullets to shoot per trigger pull
-SWEP.Primary.Damage           = 25 --base damage per bullet
+SWEP.Primary.Damage           = 23 --base damage per bullet
 SWEP.Primary.SpreadHip           = .035 --define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights     = .015 -- ironsight accuracy, should be the same for shotguns
 

@@ -33,9 +33,9 @@ SWEP.Primary.Sound          = "MAG_PDR.Single"
 SWEP.Primary.RPM            = 575 -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize       = 30
 SWEP.Primary.DefaultClip    = 60
-SWEP.Primary.KickUp         = 0.3 -- Maximum up recoil (rise)
-SWEP.Primary.KickDown       = 0.3 -- Maximum down recoil (skeet)
-SWEP.Primary.KickHorizontal = 0.3 -- Maximum up recoil (stock)
+SWEP.Primary.KickUp         = 0.48 -- Maximum up recoil (rise)
+SWEP.Primary.KickDown       = 0.48 -- Maximum down recoil (skeet)
+SWEP.Primary.KickHorizontal = 0.42 -- Maximum up recoil (stock)
 SWEP.Primary.Automatic      = true -- Automatic = true; Semi Auto = false
 SWEP.Primary.Ammo           = "smg1" -- pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, AirboatGun
 -- Pistol, buckshot, and slam always ricochet. Use AirboatGun for a light metal piercing shotgun pellets

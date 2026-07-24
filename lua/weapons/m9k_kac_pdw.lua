@@ -52,7 +52,7 @@ SWEP.CanBeSilenced          = true
 
 SWEP.Primary.NumShots       = 1 -- How many bullets to shoot per trigger pull
 SWEP.Primary.Damage         = 18 -- Base damage per bullet
-SWEP.Primary.SpreadHip         = .05 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
+SWEP.Primary.SpreadHip         = .035 -- Define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights   = .015 -- Ironsight accuracy, should be the same for shotguns
 
 SWEP.SightsPos              = Vector( 3.342, 0, 0.514 )
