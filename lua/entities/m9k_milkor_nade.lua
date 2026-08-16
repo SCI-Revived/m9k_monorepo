@@ -9,8 +9,8 @@ ENT.FlightDrop = ( 75 * 52.5 ) / 66
 ENT.ExplosionEffectScale = 1.1
 ENT.ExplosionEffectMagnitude = 12
 
-ENT.ExplosionRadius = 75
-ENT.ExplosionDamage = 300
+ENT.ExplosionRadius = 300
+ENT.ExplosionDamage = 75
 
 if SERVER then
     function ENT:GetFlightRand()
