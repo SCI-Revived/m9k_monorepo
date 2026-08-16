@@ -58,12 +58,12 @@ if SERVER then
                 self:Remove()
                 return
             end
-            util.BlastDamage( self, self.Owner, tr.HitPos, 100, 2000 )
+            util.BlastDamage( self, self.Owner, tr.HitPos, 100, 2500 )
             local effectdata = EffectData()
             effectdata:SetOrigin( tr.HitPos ) -- Where is hits
             effectdata:SetNormal( tr.HitNormal ) -- Direction of particles
             effectdata:SetEntity( self ) -- Who done it?
-            effectdata:SetScale( 1.8 ) -- Size of explosion
+            effectdata:SetScale( 1.2 ) -- Size of explosion
             effectdata:SetRadius( tr.MatType ) -- What texture it hits
             effectdata:SetMagnitude( 18 ) -- Length of explosion trails
             util.Effect( "m9k_gdcw_cinematicboom", effectdata )
