@@ -10,7 +10,7 @@ ENT.ExplosionEffectScale = 1.1
 ENT.ExplosionEffectMagnitude = 12
 
 ENT.ExplosionRadius = 75
-ENT.ExplosionDamage = 250
+ENT.ExplosionDamage = 300
 
 if SERVER then
     function ENT:GetFlightRand()
