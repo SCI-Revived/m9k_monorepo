@@ -6,5 +6,5 @@ ENT.PrintName         = "M54 High Explosive"
 
 ENT.FlightDrop = ( 80 * 52.5 ) / 66
 ENT.ExplosionEffectScale = 2
-ENT.ExplosionDamage = 250
+ENT.ExplosionDamage = 75
 ENT.ExplosionRadius = 300
