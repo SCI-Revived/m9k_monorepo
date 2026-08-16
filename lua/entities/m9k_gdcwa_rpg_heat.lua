@@ -58,7 +58,7 @@ if SERVER then
                 self:Remove()
                 return
             end
-            util.BlastDamage( self, self.Owner, tr.HitPos, 600, 150 )
+            util.BlastDamage( self, self.Owner, tr.HitPos, 100, 2000 )
             local effectdata = EffectData()
             effectdata:SetOrigin( tr.HitPos ) -- Where is hits
             effectdata:SetNormal( tr.HitNormal ) -- Direction of particles
