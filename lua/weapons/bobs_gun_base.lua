@@ -61,6 +61,8 @@ SWEP.NextFireSelect         = 0
 SWEP.OrigCrossHair          = true
 SWEP.CanShootWhileRunning   = false
 
+SWEP.WeaponWeight           = 10 -- How many units the player's walk/run speed is reduced by while holding this weapon. Should NOT be higher than 199.
+
 local CLIENT                = CLIENT
 local SERVER                = SERVER
 local MASK_SHOT             = MASK_SHOT
@@ -99,6 +101,10 @@ local entity_GetOwner = entMeta.GetOwner
 
 local playerMeta = FindMetaTable( "Player" )
 local player_KeyDown = playerMeta.KeyDown
+local player_GetWalkSpeed = playerMeta.GetWalkSpeed
+local player_GetRunSpeed = playerMeta.GetRunSpeed
+local player_SetWalkSpeed = playerMeta.SetWalkSpeed
+local player_SetRunSpeed = playerMeta.SetRunSpeed
 
 function SWEP:Initialize()
     self.Reloadaftershoot = 0 -- Can't reload when firing
@@ -177,6 +183,44 @@ function SWEP:GetIronsights()
     return self:GetIronsightsActive()
 end
 
+-- Movement penalty
+if SERVER then
+    function SWEP:ApplyWeaponWeight()
+        local owner = entity_GetOwner( self )
+        if not IsValid( owner ) or not owner:IsPlayer() then return end
+
+        local weight = self.WeaponWeight or 0
+        if weight == 0 then return end
+
+        if not owner.M9K_BaseWalkSpeed then
+            owner.M9K_BaseWalkSpeed = player_GetWalkSpeed( owner )
+            owner.M9K_BaseRunSpeed = player_GetRunSpeed( owner )
+        end
+
+        self.WeightApplied = true
+
+        player_SetWalkSpeed( owner, math.max( owner.M9K_BaseWalkSpeed - weight, 0 ) )
+        player_SetRunSpeed( owner, math.max( owner.M9K_BaseRunSpeed - weight, 0 ) )
+    end
+
+    function SWEP:RemoveWeaponWeight()
+        local owner = entity_GetOwner( self )
+        if not IsValid( owner ) or not owner:IsPlayer() then return end
+
+        if not self.WeightApplied then return end
+        self.WeightApplied = false
+
+        if owner.M9K_BaseWalkSpeed then
+            player_SetWalkSpeed( owner, owner.M9K_BaseWalkSpeed )
+            player_SetRunSpeed( owner, owner.M9K_BaseRunSpeed )
+
+            owner.M9K_BaseWalkSpeed = nil
+            owner.M9K_BaseRunSpeed = nil
+        end
+    end
+end
+
+
 function SWEP:Equip()
     self:SetHoldType( self.HoldType )
 end
@@ -205,6 +249,11 @@ function SWEP:Deploy()
     if not owner:IsNPC() and owner ~= nil and self.ResetSights and owner:GetViewModel() ~= nil then
         self.ResetSights = CurTime() + owner:GetViewModel():SequenceDuration()
     end
+
+    if SERVER then
+        self:ApplyWeaponWeight()
+    end
+
     return true
 end
 
@@ -221,11 +270,19 @@ function SWEP:Holster()
         end
     end
 
+    if SERVER then
+        self:RemoveWeaponWeight()
+    end
+
     return true
 end
 
 function SWEP:OnRemove()
     local owner = entity_GetOwner( self )
+
+    if SERVER then
+        self:RemoveWeaponWeight()
+    end
 
     if CLIENT and IsValid( owner ) and not owner:IsNPC() then
         local vm = owner:GetViewModel()
