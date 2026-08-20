@@ -79,6 +79,7 @@ function SWEP:Deploy()
 
     if SERVER then
         self:SetIronsights( false )
+        self:ApplyWeaponWeight()
     end
 
     self.NextReload = CurTime() + 1
