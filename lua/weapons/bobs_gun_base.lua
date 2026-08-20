@@ -61,7 +61,7 @@ SWEP.NextFireSelect         = 0
 SWEP.OrigCrossHair          = true
 SWEP.CanShootWhileRunning   = false
 
-SWEP.WeaponWeight           = 10 -- How many units the player's walk/run speed is reduced by while holding this weapon. Should NOT be higher than 199.
+SWEP.WeaponWeight           = 0 -- How many units the player's walk/run speed is reduced by while holding this weapon. Should never be higher than 199!
 
 local CLIENT                = CLIENT
 local SERVER                = SERVER
