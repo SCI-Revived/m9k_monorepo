@@ -17,6 +17,7 @@ SWEP.Weight                 = 30
 SWEP.AutoSwitchTo           = true
 SWEP.AutoSwitchFrom         = true
 SWEP.HoldType               = "shotgun"
+SWEP.WeaponWeight           = 100 -- How many units the player's walk/run speed is reduced by while holding this weapon. Should never be higher than 199!
 
 SWEP.ViewModelFOV           = 65
 SWEP.ViewModelFlip          = false
