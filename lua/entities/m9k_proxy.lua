@@ -31,21 +31,50 @@ function ENT:Initialize()
 end
 
 local maxDistVec = Vector( 100, 100, 100 )
+
+local function proxyGetDriver( ent )
+    if ent.GetDriver then return ent:GetDriver() end        -- source vehicles
+    if ent.GetDriverSeat then return ent:GetDriverSeat() end
+    return NULL
+end
+
 function ENT:Think()
     if self.TimeLeft < CurTime() then
         for _, ent in ipairs( ents.FindInBox( self:GetPos() - maxDistVec, self:GetPos() + maxDistVec ) ) do
-            if ent:IsPlayer() or ent:IsNPC() then
+            local isPlayer  = ent:IsPlayer()
+            local isNPC     = ent:IsNPC()
+            -- a vehicle only counts if someone is actually in it
+            local isMannedVehicle = ent:IsVehicle() and IsValid( proxyGetDriver( ent ) )
+
+            if isPlayer or isNPC or isMannedVehicle then
                 local canTrigger = hook.Run( "M9k_ProxyMineCanTrigger", self, ent, self.ProxyBombOwner )
                 if canTrigger == false then continue end
 
-                local trace = {
-                    start = self:WorldSpaceCenter(),
+                local filter = { self }
+
+                -- Let the LOS trace pass through the vehicle the target is riding in
+                if isPlayer then
+                    local veh = ent:GetVehicle()
+                    if IsValid( veh ) then
+                        filter[#filter + 1] = veh
+                        if IsValid( veh:GetParent() ) then filter[#filter + 1] = veh:GetParent() end
+                    end
+                elseif isMannedVehicle then
+                    filter[#filter + 1] = ent
+                end
+
+                local tr = util.TraceLine( {
+                    start  = self:WorldSpaceCenter(),
                     endpos = ent:WorldSpaceCenter(),
-                    filter = self
-                }
-                local tr = util.TraceLine( trace )
-                if tr.Entity:IsPlayer() or tr.Entity:IsNPC() then
+                    filter = filter,
+                } )
+
+                if tr.Entity == ent
+                    or tr.Entity:IsPlayer()
+                    or tr.Entity:IsNPC()
+                    or ( tr.Entity:IsVehicle() and IsValid( proxyGetDriver( tr.Entity ) ) ) then
                     self:Explosion()
+                    return
                 end
             end
         end
