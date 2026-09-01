@@ -9,6 +9,8 @@ ENT.Spawnable         = false
 ENT.AdminOnly         = true
 ENT.DisableDuplicator = true
 
+ENT.M9KPropDamageMultiplier = 1 -- Full prop Damage (375). This stands between the Matador's pure anti-infantry and the RPG's anti-tank.
+
 if SERVER then
     AddCSLuaFile()
 
@@ -65,7 +67,7 @@ if SERVER then
             effectdata:SetRadius( tr.MatType ) -- What texture it hits
             effectdata:SetMagnitude( 18 ) -- Length of explosion trails
             util.Effect( "m9k_gdcw_tpaboom", effectdata )
-            util.BlastDamage( self, self:OwnerGet(), tr.HitPos, 600, 250 )
+            util.BlastDamage( self, self:OwnerGet(), tr.HitPos, 500, 375 )
             util.Decal( "Scorch", tr.HitPos + tr.HitNormal, tr.HitPos - tr.HitNormal )
             self:SetNWBool( "smoke", false )
 

@@ -9,7 +9,7 @@ ENT.Spawnable         = false
 ENT.AdminOnly         = true
 ENT.DisableDuplicator = true
 
-ENT.M9KPropDamageMultiplier = 0.1 -- 250 Prop Damage. Yes, Anti-Tank launchers ARE also used to destroy fortifications, but the benefit of infinite ammo on the server is too dangerous.
+ENT.M9KPropDamageMultiplier = 0.4 -- 1000 Prop Damage. Light raiding weapon.
 
 if SERVER then
     AddCSLuaFile()
@@ -17,7 +17,7 @@ if SERVER then
     function ENT:Initialize()
         self.CanTool = false
 
-        self.flightvector = self:GetForward() * ((115 * 52.5) / 66) * M9K.TickspeedMult
+        self.flightvector = self:GetForward() * ((80 * 52.5) / 66) * M9K.TickspeedMult
         self.timeleft = CurTime() + 10
         self.Owner = self:GetOwner()
         self:SetModel( "models/Weapons/W_missile_closed.mdl" )
@@ -76,7 +76,7 @@ if SERVER then
         end
 
         self:SetPos( self:GetPos() + self.flightvector )
-        self.flightvector = self.flightvector - self.flightvector / ((147 * 39.37) / 66) + self:GetForward() * 2 + Vector( math.Rand( -0.3, 0.3 ), math.Rand( -0.3, 0.3 ), math.Rand( -0.1, 0.1 ) ) +
+        self.flightvector = self.flightvector - self.flightvector / ((147 * 39.37) / 66) + self:GetForward() * 1 + Vector( math.Rand( -0.3, 0.3 ), math.Rand( -0.3, 0.3 ), math.Rand( -0.1, 0.1 ) ) +
             Vector( 0, 0, -0.111 )
         self:SetAngles( self.flightvector:Angle() + Angle( 0, 0, 0 ) )
         self:NextThink( CurTime() )
