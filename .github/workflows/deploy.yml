@@ -1,35 +1,48 @@
 name: Deploy to Workshop
 
 on:
+  schedule:
+    - cron: '0 0 * * *'
   workflow_dispatch:
-    inputs:
-      changelog:
-        type: string
-        required: false
-        default: "Deployment via Github to latest changes"
 
 jobs:
   deploy:
+    if: github.repository == 'SCI-Revived/m9k_monorepo'
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v7
         with:
           path: project
+          fetch-depth: 0
 
-      - name: Remove Non-content
+      - name: Check for commits in the last day
+        id: check
+        working-directory: project
         run: |
-          rm -rfv $GITHUB_WORKSPACE/project/.git*
-          rm -fv $GITHUB_WORKSPACE/project/LICENSE
-          rm -fv $GITHUB_WORKSPACE/project/README
-          # rm -rf $GITHUB_WORKSPACE/project/lua
+          if [ -n "$(git log --since='25 hours ago' --oneline)" ]; then
+            echo "should_deploy=true" >> "$GITHUB_OUTPUT"
+            {
+              echo "changelog<<CHANGELOG_EOF"
+              git log --since='25 hours ago' --pretty=format:'- %s'
+              echo ""
+              echo "CHANGELOG_EOF"
+            } >> "$GITHUB_OUTPUT"
+          else
+            echo "should_deploy=false" >> "$GITHUB_OUTPUT"
+            echo "No commits in the last 24 hours; skipping upload."
+          fi
 
-      - uses: CFC-Servers/gmod-upload@master
+      - name: Upload to Workshop
+        if: steps.check.outputs.should_deploy == 'true' || github.event_name == 'workflow_dispatch'
+        uses: CFC-Servers/gmod-upload@master
         with:
-          id: 3114933414
-          changelog: ${{ inputs.changelog }}
+          id: 3794184068
+          changelog: "${{ steps.check.outputs.changelog }}"
+          title: "SCI - M9K Monorepo"
+          type: "ServerContent"
+          tag1: "fun"
         env:
-          STEAM_USERNAME: ${{ secrets.WORKSHOP_UPLOADER_USERNAME }}
-          STEAM_PASSWORD: ${{ secrets.WORKSHOP_UPLOADER_PASSWORD }}
-
+          STEAM_USERNAME: ${{ secrets.SCI_STEAM_ACCOUNT }}
+          STEAM_PASSWORD: ${{ secrets.SCI_STEAM_PASSWORD }}
