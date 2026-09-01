@@ -33,6 +33,8 @@ function ENT:Initialize()
 end
 
 ENT.DetectRadius = 200 -- units; how close a target must be to trip the mine
+ENT.TriggerDelay = 0.3 -- seconds between the mine sensing a target and detonating
+                       -- (lets a vehicle drive onto the mine instead of blowing in front of it)
 
 -- Set the console var m9k_proxy_debug to 1 to log detection to the server console.
 local proxy_debug = CreateConVar( "m9k_proxy_debug", "0", FCVAR_ARCHIVE, "Log M9K proximity mine detection" )
@@ -107,22 +109,39 @@ function ENT:CheckTarget( ent )
     return false
 end
 
+function ENT:SenseTarget()
+    local targets = ents.FindInSphere( self:WorldSpaceCenter(), self.DetectRadius + 64 )
+
+    -- Players seated in scripted vehicles are not always returned by
+    -- FindInSphere, so check every player explicitly too.
+    for _, ply in ipairs( player.GetAll() ) do
+        targets[#targets + 1] = ply
+    end
+
+    for _, ent in ipairs( targets ) do
+        if self:CheckTarget( ent ) then return true end
+    end
+
+    return false
+end
+
 function ENT:Think()
-    if self.TimeLeft and self.TimeLeft < CurTime() then
-        local targets = ents.FindInSphere( self:WorldSpaceCenter(), self.DetectRadius + 64 )
-
-        -- Players seated in scripted vehicles are not always returned by
-        -- FindInSphere, so check every player explicitly too.
-        for _, ply in ipairs( player.GetAll() ) do
-            targets[#targets + 1] = ply
+    -- Fuse already running: detonate when it expires.
+    if self.FuseTime then
+        if CurTime() >= self.FuseTime then
+            self:Explosion()
+            return
         end
+        self:NextThink( CurTime() + 0.05 )
+        return true
+    end
 
-        for _, ent in ipairs( targets ) do
-            if self:CheckTarget( ent ) then
-                self:Explosion()
-                return
-            end
-        end
+    -- Armed and scanning for a target.
+    if self.TimeLeft and self.TimeLeft < CurTime() and self:SenseTarget() then
+        self.FuseTime = CurTime() + self.TriggerDelay
+        proxyLog( "armed, detonating in", self.TriggerDelay )
+        self:EmitSound( "buttons/blip1.wav", 70, 120 )
+        self:SetColor( Color( 255, 60, 60 ) ) -- visual tell that it's live
     end
 
     self:NextThink( CurTime() + 0.1 )
