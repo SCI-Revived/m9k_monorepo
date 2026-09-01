@@ -9,6 +9,8 @@ ENT.AdminOnly = true
 ENT.DisableDuplicator = true
 ENT.CanTool = false
 
+ENT.M9KPropDamageMultiplier = 0.2 -- In what world are you using this to assault a base? Whatever man.
+
 if CLIENT then return end
 
 AddCSLuaFile()
@@ -30,7 +32,7 @@ function ENT:Initialize()
     self.BombHealth = 100
 end
 
-ENT.DetectRadius = 100 -- units; how close a target must be to trip the mine
+ENT.DetectRadius = 200 -- units; how close a target must be to trip the mine
 
 -- Set the console var m9k_proxy_debug to 1 to log detection to the server console.
 local proxy_debug = CreateConVar( "m9k_proxy_debug", "0", FCVAR_ARCHIVE, "Log M9K proximity mine detection" )
@@ -148,7 +150,7 @@ function ENT:Explosion()
     effectBoom:SetMagnitude( 18 )
     util.Effect( "m9k_gdcw_cinematicboom", effectBoom )
 
-    util.BlastDamage( self, self.ProxyBombOwner, self:GetPos(), 200, 250 )
+    util.BlastDamage( self, self.ProxyBombOwner, self:GetPos(), 200, 2500 )
     util.ScreenShake( self:GetPos(), 2000, 255, 2.5, 1250 )
 
     self:EmitSound( "ambient/explosions/explode_" .. math.random( 1, 4 ) .. ".wav", self.Pos, 100, 100 )
