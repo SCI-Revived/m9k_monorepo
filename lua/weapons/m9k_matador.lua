@@ -17,7 +17,7 @@ SWEP.Weight                 = 30
 SWEP.AutoSwitchTo           = true
 SWEP.AutoSwitchFrom         = true
 SWEP.HoldType               = "rpg"
-
+SWEP.WeaponWeight           = 50 -- How many units the player's walk/run speed is reduced by while holding this weapon. Should never be higher than 199!
 
 
 SWEP.ViewModelFOV           = 70
@@ -30,7 +30,7 @@ SWEP.AdminSpawnable         = true
 SWEP.FiresUnderwater        = true
 
 SWEP.Primary.Sound          = ""
-SWEP.Primary.RPM            = 60 -- This is in Rounds Per Minute
+SWEP.Primary.RPM            = 20 -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize       = 1
 SWEP.Primary.DefaultClip    = 4
 SWEP.Primary.KickUp         = 0 -- Maximum up recoil (rise)

@@ -9,6 +9,11 @@ ENT.Spawnable         = false
 ENT.AdminOnly         = true
 ENT.DisableDuplicator = true
 
+-- Props take this fraction of the shell's damage (see
+-- lua/autorun/server/m9k_prop_damage_multiplier.lua). Damage to players, NPCs
+-- and vehicles is unaffected.
+ENT.M9KPropDamageMultiplier = 0.25 -- 100 Prop Damage.
+
 if SERVER then
     AddCSLuaFile()
 
@@ -57,7 +62,7 @@ if SERVER then
                 self:Remove()
                 return
             end
-            util.BlastDamage( self, self.Owner, tr.HitPos, 450, 350 )
+            util.BlastDamage( self, self.Owner, tr.HitPos, 450, 400 ) -- Anti-Infantry oriented weapon.
             local effectdata = EffectData()
             effectdata:SetOrigin( tr.HitPos ) -- Where is hits
             effectdata:SetNormal( tr.HitNormal ) -- Direction of particles

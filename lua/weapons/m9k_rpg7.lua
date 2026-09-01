@@ -20,7 +20,6 @@ SWEP.HoldType               = "rpg"
 SWEP.WeaponWeight           = 50 -- How many units the player's walk/run speed is reduced by while holding this weapon. Should never be higher than 199!
 
 
-
 SWEP.ViewModelFOV           = 70
 SWEP.ViewModelFlip          = false
 SWEP.ViewModel              = "models/weapons/v_RL7.mdl"

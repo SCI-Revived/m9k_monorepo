@@ -13,6 +13,12 @@ ENT.ExplosionEffectScale = 2 -- Size of the explosion
 ENT.ExplosionRadius = 150
 ENT.ExplosionDamage = 350
 
+-- Multiplier applied to this projectile's damage against props only (see
+-- lua/autorun/server/m9k_prop_damage_multiplier.lua). 1 = unchanged,
+-- 0.5 = props take half, 0 = props immune. Players/NPCs/vehicles unaffected.
+-- Entities inheriting this base can override it.
+ENT.M9KPropDamageMultiplier = 1
+
 if SERVER then
     AddCSLuaFile()
 

@@ -9,6 +9,8 @@ ENT.Spawnable         = false
 ENT.AdminOnly         = true
 ENT.DisableDuplicator = true
 
+ENT.M9KPropDamageMultiplier = 0.1 -- 250 Prop Damage. Yes, Anti-Tank launchers ARE also used to destroy fortifications, but the benefit of infinite ammo on the server is too dangerous.
+
 if SERVER then
     AddCSLuaFile()
 
@@ -58,7 +60,7 @@ if SERVER then
                 self:Remove()
                 return
             end
-            util.BlastDamage( self, self.Owner, tr.HitPos, 100, 2500 )
+            util.BlastDamage( self, self.Owner, tr.HitPos, 100, 2500 ) -- Pure anti-tank weapon. Can kill infantry with it with very close hits.
             local effectdata = EffectData()
             effectdata:SetOrigin( tr.HitPos ) -- Where is hits
             effectdata:SetNormal( tr.HitNormal ) -- Direction of particles
