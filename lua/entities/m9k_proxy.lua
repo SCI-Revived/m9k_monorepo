@@ -32,8 +32,8 @@ function ENT:Initialize()
     self.BombHealth = 100
 end
 
-ENT.DetectRadius = 200 -- units; how close a target must be to trip the mine
-ENT.TriggerDelay = 0.3 -- seconds between the mine sensing a target and detonating
+ENT.DetectRadius = 100 -- units; how close a target must be to trip the mine
+ENT.TriggerDelay = 0.2 -- seconds between the mine sensing a target and detonating
                        -- (lets a vehicle drive onto the mine instead of blowing in front of it)
 
 -- Set the console var m9k_proxy_debug to 1 to log detection to the server console.
@@ -169,7 +169,7 @@ function ENT:Explosion()
     effectBoom:SetMagnitude( 18 )
     util.Effect( "m9k_gdcw_cinematicboom", effectBoom )
 
-    util.BlastDamage( self, self.ProxyBombOwner, self:GetPos(), 200, 2500 )
+    util.BlastDamage( self, self.ProxyBombOwner, self:GetPos(), 100, 1500 )
     util.ScreenShake( self:GetPos(), 2000, 255, 2.5, 1250 )
 
     self:EmitSound( "ambient/explosions/explode_" .. math.random( 1, 4 ) .. ".wav", self.Pos, 100, 100 )
