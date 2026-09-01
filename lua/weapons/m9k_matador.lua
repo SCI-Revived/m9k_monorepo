@@ -30,7 +30,7 @@ SWEP.AdminSpawnable         = true
 SWEP.FiresUnderwater        = true
 
 SWEP.Primary.Sound          = ""
-SWEP.Primary.RPM            = 20 -- This is in Rounds Per Minute
+SWEP.Primary.RPM            = 15 -- This is in Rounds Per Minute
 SWEP.Primary.ClipSize       = 1
 SWEP.Primary.DefaultClip    = 4
 SWEP.Primary.KickUp         = 0 -- Maximum up recoil (rise)

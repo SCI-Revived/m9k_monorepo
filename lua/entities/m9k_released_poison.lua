@@ -8,6 +8,9 @@ ENT.Spawnable         = false
 ENT.AdminOnly         = true
 ENT.DisableDuplicator = true
 
+ENT.M9KPropDamageMultiplier = 0 -- It's a chemical weapon, it shouldn't damage props.
+
+
 if SERVER then
     AddCSLuaFile()
 
@@ -46,15 +49,15 @@ if SERVER then
     function ENT:MakePoison()
         local pos = self.PosToKeep
         if pos == nil then pos = self:GetPos() end
-        local damage = 70
+        local damage = 50
         local radius = 225
 
         if self.Big then
             radius = 600
-            damage = 70
+            damage = 50
         else
             radius = 225
-            damage = 70
+            damage = 50
         end
 
         local poisonowner
