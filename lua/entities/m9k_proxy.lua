@@ -30,52 +30,95 @@ function ENT:Initialize()
     self.BombHealth = 100
 end
 
-local maxDistVec = Vector( 100, 100, 100 )
+ENT.DetectRadius = 100 -- units; how close a target must be to trip the mine
 
-local function proxyGetDriver( ent )
-    if ent.GetDriver then return ent:GetDriver() end        -- source vehicles
-    if ent.GetDriverSeat then return ent:GetDriverSeat() end
+-- Set the console var m9k_proxy_debug to 1 to log detection to the server console.
+local proxy_debug = CreateConVar( "m9k_proxy_debug", "0", FCVAR_ARCHIVE, "Log M9K proximity mine detection" )
+local function proxyLog( ... )
+    if proxy_debug:GetBool() then print( "[m9k_proxy]", ... ) end
+end
+
+-- Returns the vehicle an entity is riding in / driving, across Source vehicles,
+-- simfphys and LVS. NULL if none.
+local function proxyGetVehicle( ent )
+    if ent:IsPlayer() then
+        if ent.GetVehicle and IsValid( ent:GetVehicle() ) then return ent:GetVehicle() end
+        if ent.GetSimfphysCar and IsValid( ent:GetSimfphysCar() ) then return ent:GetSimfphysCar() end
+        if ent.lvsGetVehicle and IsValid( ent:lvsGetVehicle() ) then return ent:lvsGetVehicle() end
+    end
     return NULL
 end
 
+-- Walks parent + framework links so we can ignore the whole vehicle during LOS.
+local function proxyVehicleParts( veh, out )
+    if not IsValid( veh ) then return out end
+    out[#out + 1] = veh
+    if IsValid( veh:GetParent() ) then out[#out + 1] = veh:GetParent() end
+    if veh.GetParent and IsValid( veh:GetParent() ) then
+        local p = veh:GetParent()
+        if IsValid( p:GetParent() ) then out[#out + 1] = p:GetParent() end
+    end
+    -- simfphys: pod -> car via GetPhysicsObjectCount owner, or .base
+    if veh.base and IsValid( veh.base ) then out[#out + 1] = veh.base end
+    return out
+end
+
+function ENT:CheckTarget( ent )
+    if not IsValid( ent ) then return false end
+
+    local isPlayer = ent:IsPlayer()
+    local isNPC    = ent:IsNPC()
+    if not ( isPlayer or isNPC ) then return false end
+    if isPlayer and not ent:Alive() then return false end
+
+    if ent:WorldSpaceCenter():Distance( self:WorldSpaceCenter() ) > self.DetectRadius then
+        return false
+    end
+
+    if hook.Run( "M9k_ProxyMineCanTrigger", self, ent, self.ProxyBombOwner ) == false then
+        return false
+    end
+
+    local veh = proxyGetVehicle( ent )
+    local inVehicle = IsValid( veh )
+
+    -- Line-of-sight check, ignoring the mine and (if any) the target's vehicle.
+    local filter = proxyVehicleParts( veh, { self } )
+    local tr = util.TraceLine( {
+        start  = self:WorldSpaceCenter(),
+        endpos = ent:WorldSpaceCenter(),
+        filter = filter,
+    } )
+
+    if tr.Entity == ent or tr.Entity == veh or tr.Entity:IsPlayer() or tr.Entity:IsNPC() then
+        proxyLog( "triggered by", ent, inVehicle and "(in vehicle)" or "(on foot)" )
+        return true
+    end
+
+    -- In a vehicle but LOS is still blocked (big chassis, multi-part car):
+    -- proximity alone is enough for a vehicle occupant.
+    if inVehicle then
+        proxyLog( "triggered by", ent, "(in vehicle, no LOS)" )
+        return true
+    end
+
+    return false
+end
+
 function ENT:Think()
-    if self.TimeLeft < CurTime() then
-        for _, ent in ipairs( ents.FindInBox( self:GetPos() - maxDistVec, self:GetPos() + maxDistVec ) ) do
-            local isPlayer  = ent:IsPlayer()
-            local isNPC     = ent:IsNPC()
-            -- a vehicle only counts if someone is actually in it
-            local isMannedVehicle = ent:IsVehicle() and IsValid( proxyGetDriver( ent ) )
+    if self.TimeLeft and self.TimeLeft < CurTime() then
+        local targets = ents.FindInSphere( self:WorldSpaceCenter(), self.DetectRadius + 64 )
 
-            if isPlayer or isNPC or isMannedVehicle then
-                local canTrigger = hook.Run( "M9k_ProxyMineCanTrigger", self, ent, self.ProxyBombOwner )
-                if canTrigger == false then continue end
+        -- Players seated in scripted vehicles are not always returned by
+        -- FindInSphere, so check every player explicitly too.
+        for _, ply in ipairs( player.GetAll() ) do
+            targets[#targets + 1] = ply
+        end
 
-                local filter = { self }
-
-                -- Let the LOS trace pass through the vehicle the target is riding in
-                if isPlayer then
-                    local veh = ent:GetVehicle()
-                    if IsValid( veh ) then
-                        filter[#filter + 1] = veh
-                        if IsValid( veh:GetParent() ) then filter[#filter + 1] = veh:GetParent() end
-                    end
-                elseif isMannedVehicle then
-                    filter[#filter + 1] = ent
-                end
-
-                local tr = util.TraceLine( {
-                    start  = self:WorldSpaceCenter(),
-                    endpos = ent:WorldSpaceCenter(),
-                    filter = filter,
-                } )
-
-                if tr.Entity == ent
-                    or tr.Entity:IsPlayer()
-                    or tr.Entity:IsNPC()
-                    or ( tr.Entity:IsVehicle() and IsValid( proxyGetDriver( tr.Entity ) ) ) then
-                    self:Explosion()
-                    return
-                end
+        for _, ent in ipairs( targets ) do
+            if self:CheckTarget( ent ) then
+                self:Explosion()
+                return
             end
         end
     end
