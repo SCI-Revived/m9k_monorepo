@@ -12,6 +12,7 @@ ENT.ExplosionDamage = 600
 ENT.ExplosionRadius = 200
 ENT.ExplosionEffectScale = 1.5
 ENT.ExplosionEffectMagnitude = 5
+ENT.M9KPropDamageMultiplier = 0.25 -- 150 Damage. You can still go be annoying and throw these at vehicles.
 
 if SERVER then
     AddCSLuaFile()
