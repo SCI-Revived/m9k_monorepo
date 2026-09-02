@@ -70,7 +70,7 @@ SWEP.RunSightsAng             = Vector( -19.8471, -33.9181, 10 )
 
 -- Custom simfphys projectile settings for this weapon.
 -- Tweak these instead of the base ShootBullet's hitscan Damage/Force.
-SWEP.SimfphysDamage      = 150   -- direct-hit damage
+SWEP.SimfphysDamage      = 300   -- direct-hit damage
 SWEP.SimfphysForce       = 500   -- physics impact force
 SWEP.SimfphysSize        = 4     -- projectile size
 SWEP.SimfphysDeflectAng  = 25     -- deflection angle on glancing hits (0 = none for an AP round)
