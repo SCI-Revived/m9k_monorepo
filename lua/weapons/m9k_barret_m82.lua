@@ -77,7 +77,6 @@ SWEP.SimfphysDeflectAng  = 25     -- deflection angle on glancing hits (0 = none
 SWEP.SimfphysBlastRadius  = 0     -- 0 = no splash damage (set >0 for explosive rounds)
 SWEP.SimfphysBlastDamage = 0
 SWEP.SimfphysBlastEffect = "simfphys_tankweapon_explosion_micro"
-SWEP.CWV_PropDamageMultiplier = 0.5
 
 local function simfphysSpread( dir, aimcone )
 	if aimcone <= 0 then return dir end
