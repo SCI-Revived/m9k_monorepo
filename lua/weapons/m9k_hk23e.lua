@@ -55,3 +55,29 @@ SWEP.SightsPos = Vector(-3.38, 0, 1.9)
 SWEP.SightsAng = Vector(0, -0.014, 0)
 SWEP.RunSightsPos = Vector(5.081, -4.755, -1.476)
 SWEP.RunSightsAng = Vector(0, 41.884, 0)
+
+SWEP.ShowWorldModel = false -- stop the broken bonemerged draw
+
+SWEP.WElements = {
+    ["hk23e"] = {
+        type = "Model",
+        model = "models/weapons/w_machinegunhk2.mdl",
+        bone = "ValveBiped.Bip01_R_Hand",
+        rel = "",
+        pos = Vector( -0.5, 1, 0.5 ),
+        angle = Angle( -10, 0, 180 ),
+        size = Vector( 1, 1, 1 ),
+        color = Color( 255, 255, 255, 255 ),
+        surpresslightning = false,
+        material = "",
+        skin = 0,
+        bodygroup = {}
+    }
+}
+
+if CLIENT then
+    function SWEP:DrawWorldModel()
+        self.ShowWorldModel = not IsValid( self:GetOwner() )
+        self.BaseClass.DrawWorldModel( self )
+    end
+end
