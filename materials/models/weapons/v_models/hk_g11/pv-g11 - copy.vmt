@@ -1,0 +1,19 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models\weapons\v_models\HK_G11\PV-G11"
+	"$bumpmap" "models\weapons\v_models\HK_G11\G11_N"
+	$envmap env_cubemap
+	$normalmapalphaenvmapmask 1
+	$envmapcontrast 1
+	$envmaptint .1 .1 .1
+	$model 1
+	"$phong" 		"1"
+	"$phongexponent" 	"5"
+	"$phongboost" "2"
+	"$phongfresnelranges" "[1 6 12]"
+                "$halflambert" "1"
+	"$PhongExponentTexture" "models\weapons\v_models\HK_G11\G11-S"
+
+
+
+}
