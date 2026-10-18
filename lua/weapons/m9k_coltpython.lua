@@ -47,7 +47,7 @@ SWEP.data.ironsights        = 1
 
 SWEP.Primary.NumShots       = 1 --how many bullets to shoot, use with shotguns
 SWEP.Primary.Damage         = 29 --base damage, scaled by game
-SWEP.Primary.SpreadHip         = .02 --define from-the-hip accuracy 1 is terrible, .0001 is exact)
+SWEP.Primary.SpreadHip         = .03 --define from-the-hip accuracy 1 is terrible, .0001 is exact)
 SWEP.Primary.SpreadIronSights   = .01 -- has to be the same as Primary.SpreadHip
 
 SWEP.SightsPos              = Vector( -2.7, -1.676, 1.796 )
