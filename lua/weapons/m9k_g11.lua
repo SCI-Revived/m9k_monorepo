@@ -68,7 +68,7 @@ SWEP.RunSightsAng             = Vector( -24.2146, -36.522, 10 )
 SWEP.Primary.Burst            = false
 SWEP.AutoRPM                  = SWEP.Primary.RPM
 SWEP.BurstCount               = 3
-SWEP.BurstRPM                 = 3000
+SWEP.BurstRPM                 = 2100
 SWEP.BurstDelay               = 0.45
 
 SWEP.BurstRecoilMult          = 0.7
