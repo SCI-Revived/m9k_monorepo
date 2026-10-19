@@ -28,7 +28,7 @@ SWEP.Base                     = "bobs_scoped_base"
 SWEP.Spawnable                = true
 SWEP.AdminSpawnable           = true
 
-SWEP.Primary.Sound            = "g11maybe.wav"
+SWEP.Primary.Sound            = "m9k_g11.wav"
 SWEP.Primary.RPM              = 600 -- Full-auto RPM (burst mode uses BurstRPM below)
 SWEP.Primary.ClipSize         = 30
 SWEP.Primary.DefaultClip      = 60
