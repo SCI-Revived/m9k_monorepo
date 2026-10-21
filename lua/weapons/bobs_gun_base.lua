@@ -60,6 +60,8 @@ SWEP.SelectiveFire          = false
 SWEP.NextFireSelect         = 0
 SWEP.OrigCrossHair          = true
 SWEP.CanShootWhileRunning   = false
+SWEP.CanShootInAir          = false -- Set true on a weapon to let it fire while the player is airborne
+SWEP.AirborneGraceTime      = 0.1 -- Seconds off the ground before the gun lowers (stops flicker on stairs/bumps). 0 = instant
 
 SWEP.WeaponWeight           = 0 -- How many units the player's walk/run speed is reduced by while holding this weapon. Should never be higher than 199!
 
@@ -294,10 +296,31 @@ function SWEP:OnRemove()
     end
 end
 
+function SWEP:IsAirborne()
+    local owner = entity_GetOwner( self )
+    if not IsValid( owner ) then return false end
+    if not owner:IsPlayer() then return false end
+
+    -- Ignore noclip, ladders, vehicles, and swimming
+    if owner:GetMoveType() ~= MOVETYPE_WALK then return false end
+    if owner:WaterLevel() >= 2 then return false end
+
+    local selfTbl = entity_GetTable( self )
+    if owner:IsOnGround() then
+        selfTbl.LastGroundTime = CurTime()
+        return false
+    end
+
+    return CurTime() - ( selfTbl.LastGroundTime or 0 ) > selfTbl.AirborneGraceTime
+end
+
 function SWEP:IsRunning()
     local owner = entity_GetOwner( self )
     if not IsValid( owner ) then return false end
     if not owner:IsPlayer() then return false end
+
+    -- Being airborne counts as "running" so the gun lowers and can't fire
+    if not self.CanShootInAir and self:IsAirborne() then return true end
 
     local sprintDown = player_KeyDown( owner, IN_SPEED )
     if player_KeyDown( owner, IN_FORWARD ) or player_KeyDown( owner, IN_BACK ) or player_KeyDown( owner, IN_MOVELEFT ) or player_KeyDown( owner, IN_MOVERIGHT ) then
@@ -513,6 +536,8 @@ function SWEP:FireAnimation()
 end
 
 function SWEP:CanPrimaryAttack()
+    if not self.CanShootInAir and self:IsAirborne() then return false end
+
     if self:Clip1() <= 0 then
         self:EmitSound( "Weapon_Pistol.Empty" )
         self:SetNextPrimaryFire( CurTime() + 0.2 )
